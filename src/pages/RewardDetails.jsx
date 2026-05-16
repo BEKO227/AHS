@@ -1,10 +1,14 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { rewards } from "../data/rewards";
 import { ArrowLeft } from "lucide-react";
+import { useState } from "react";
+import ImageModal from "../components/Imagemodal";
 
 const RewardDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const reward = rewards.find((r) => r.id === id);
 
@@ -51,16 +55,31 @@ const RewardDetails = () => {
         {reward.gallery.map((img, i) => (
           <div
             key={i}
-            className="rounded-2xl overflow-hidden border border-white/10 aspect-4/5"
+            onClick={() => setSelectedImage(img)}
+            className="
+              cursor-pointer
+              rounded-2xl
+              overflow-hidden
+              border border-white/10
+              aspect-4/5
+              group
+            "
           >
             <img
               src={img}
-              className="w-full h-full object-cover hover:scale-105 transition duration-700"
+              className="w-full h-full object-cover transition duration-700 group-hover:scale-105"
             />
           </div>
         ))}
 
       </div>
+
+      {/* MODAL */}
+      <ImageModal
+        isOpen={!!selectedImage}
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
 
     </section>
   );

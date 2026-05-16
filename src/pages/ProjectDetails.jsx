@@ -2,10 +2,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { projects } from "../data/projects";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import ImageModal from "../components/Imagemodal";
 
 const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const project = projects.find((p) => p.id === id);
 
@@ -20,13 +24,13 @@ const ProjectDetails = () => {
   return (
     <section className="min-h-screen bg-black text-white pt-32 px-6 md:px-16 relative overflow-hidden">
 
-      {/* ================= BACKGROUND GLOW ================= */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0 -z-10 pointer-events-none">
         <div className="absolute -top-40 left-1/2 w-96 h-96 bg-white/5 blur-[120px] rounded-full -translate-x-1/2"></div>
         <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-white/5 blur-[140px] rounded-full"></div>
       </div>
 
-      {/* ================= BACK BUTTON ================= */}
+      {/* BACK */}
       <div className="max-w-6xl mx-auto mb-10">
         <button
           onClick={() => navigate(-1)}
@@ -40,7 +44,7 @@ const ProjectDetails = () => {
         </button>
       </div>
 
-      {/* ================= HEADER ================= */}
+      {/* HEADER */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -60,7 +64,7 @@ const ProjectDetails = () => {
         </p>
       </motion.div>
 
-      {/* ================= INSTAGRAM STYLE GALLERY ================= */}
+      {/* GALLERY */}
       <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-5">
 
         {project.images.map((img, index) => (
@@ -74,9 +78,16 @@ const ProjectDetails = () => {
               delay: index * 0.03,
               ease: "easeOut",
             }}
+            onClick={() => setSelectedImage(img)}
             className={`
-              group overflow-hidden rounded-2xl border border-white/10 bg-white/5
-              hover:border-white/20 transition duration-500
+              cursor-pointer
+              group
+              overflow-hidden
+              rounded-2xl
+              border border-white/10
+              bg-white/5
+              hover:border-white/20
+              transition duration-500
               ${
                 index % 5 === 0
                   ? "aspect-3/4"
@@ -96,7 +107,13 @@ const ProjectDetails = () => {
 
       </div>
 
-      {/* ================= SPACING ================= */}
+      {/* MODAL */}
+      <ImageModal
+        isOpen={!!selectedImage}
+        image={selectedImage}
+        onClose={() => setSelectedImage(null)}
+      />
+
       <div className="h-28"></div>
 
     </section>
