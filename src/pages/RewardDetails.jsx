@@ -2,7 +2,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { rewards } from "../data/rewards";
 import { ArrowLeft } from "lucide-react";
 import { useState } from "react";
-import ImageModal from "../components/Imagemodal";
+import ImageModal from "../components/ImageModal";
 
 const RewardDetails = () => {
   const { id } = useParams();

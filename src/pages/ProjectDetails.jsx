@@ -3,7 +3,7 @@ import { projects } from "../data/projects";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import ImageModal from "../components/Imagemodal";
+import ImageModal from "../components/ImageModal";
 
 const ProjectDetails = () => {
   const { id } = useParams();
