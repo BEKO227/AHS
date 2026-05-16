@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Rewards from "./pages/Rewards";
 import ProjectDetails from "./pages/ProjectDetails";
 import RewardDetails from "./pages/RewardDetails";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
