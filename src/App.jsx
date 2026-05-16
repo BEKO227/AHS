@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <Navbar />
-
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
