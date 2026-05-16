@@ -15,16 +15,17 @@ function App() {
     <>
       <Navbar />
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/services" element={<Services />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/rewards" element={<Rewards />} />
-        <Route path="/projects/:id" element={<ProjectDetails />} />
-        <Route path="/rewards/:id" element={<RewardDetails />} />
-
-      </Routes>
+      <main className="pt-20 md:pt-24"> {/* ADD THIS */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/projects/:id" element={<ProjectDetails />} />
+          <Route path="/rewards/:id" element={<RewardDetails />} />
+        </Routes>
+      </main>
     </>
   );
 }
